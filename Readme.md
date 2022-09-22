@@ -8,7 +8,7 @@ This repository contains an ActivitySchema implementation utilizeing the StackOv
 - To access the data on BigQuery go [here](https://cloud.google.com/bigquery/public-data/stackoverflow)
 
 ## How to use this repo
-The SQL code here is designed to build a slice of the entire StackOverflow (SO) database as an activity schema. It utilizes 5 activities from SO (`answer_edited`, `answer_created`, `question_edited`, `question_created`, `commented_on_post`, `user_created`) to build this.
+The SQL code here is designed to build a slice of the entire StackOverflow (SO) database as an activity schema. It utilizes 6 activities from SO (`answer_edited`, `answer_created`, `question_edited`, `question_created`, `commented_on_post`, `user_created`) to build this.
 
 ### Step 1: Create the table
 Run the first portion of SQL code under [create_table.sql](create_table.sql) to create the table. Don't run the update script yet. That is supposed to be run after the table has been built:
