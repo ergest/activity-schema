@@ -11,7 +11,7 @@ insert my_data.stackoverflow_stream
 )
 with post_activity as (
     select
-        id,
+        min(id) as id,
         user_id,
         post_id,
         creation_date,
@@ -26,6 +26,8 @@ with post_activity as (
         and user_id > 0 --exclude automated processes
         and user_id is not null
         and post_history_type_id between 1 and 6
+    group by
+        2,3,4,5
 )
 ,post_types as (
     select
@@ -51,14 +53,14 @@ with post_activity as (
         bigquery-public-data.stackoverflow.posts_answers
  )
 select
-    cast(pa.id as string)       as activity_id,
-    pa.creation_date            as ts,
+    cast(pa.id as string)                   as activity_id,
+    pa.creation_date                        as ts,
     pt.post_type || '_' || pa.activity_type as activity,
-    cast(pa.user_id as string)  as customer,
-    pt.title                    as feature_1,
-    pt.body                     as feature_2,
-    pt.tags                     as feature_3,
-    post_url                    as link
+    cast(pa.user_id as string)              as customer,
+    pt.title                                as feature_1,
+    pt.body                                 as feature_2,
+    pt.tags                                 as feature_3,
+    post_url                                as link
 from
     post_types pt
     join post_activity pa 
