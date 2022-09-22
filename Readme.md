@@ -57,3 +57,6 @@ where
     and dt.activity = a.activity
     and a.ts = dt.ts;
 ```
+
+### Step 4: Now you're ready to query the table
+Try running the provided [sample_query.sql](sample_query.sql) for a taste of what the ActivitySchema can do. It will show the first ever question posted after an answer had already been posted.
